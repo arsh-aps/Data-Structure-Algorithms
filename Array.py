@@ -88,3 +88,46 @@ for i in range(len(arr)):
         if arr[j+1] < arr[j]:
             arr[j], arr[j+1] = arr[j+1], arr[j]
 print(arr)
+
+#Merge sort
+def mergeSort(arr):
+    if len(arr) > 1:
+        mid = len(arr)//2
+        left = arr[:mid]
+        right = arr[mid:]
+        print('Mid = ' + str(mid) + ' Left = ' + str(left) + ' Right = ' + str(right))
+
+        mergeSort(left)
+        mergeSort(right)
+
+        global ctr
+        ctr += 1
+        print('Counter:' + str(ctr))
+
+        i = j = k = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+
+            print('Array(first while): ' + str(arr))  
+            k += 1
+
+        while i < len(left):
+            arr[k] = left[i]
+            i += 1
+            k += 1
+        print('Array: ' + str(arr))
+        while j < len(right):
+            arr[k] = right[j]
+            j += 1
+            k += 1
+        print('Array: ' + str(arr))
+arr = [10,1,5,6,3,2,234,2,21]
+print('Array before sorting: ' + str(arr))
+ctr = 0
+mergeSort(arr)
+print('After sorting: ' + str(arr))
